@@ -4,6 +4,7 @@ const mlab = require("./keys").mlab;
 
 // CONTROLLERS
 const worksController = require('./controllers/works');
+const composersController = require('./controllers/composers');
 
 // EXPRESS SETUP
 const express = require("express");
@@ -17,8 +18,15 @@ app.listen(port, () => {
 });
 
 // ROUTES
+// works
 app.get("/works", worksController.getAllWorks)
 app.get("/composer-works", worksController.getWorksByComposers)
 // app.post("/works", worksController.createWork)
 
+// composers
+app.get("/composers", composersController.getAllComposers)
+app.post("/composers", composersController.createComposer)
 
+// users
+
+// comments
