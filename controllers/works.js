@@ -32,9 +32,11 @@ const worksController = {
 
   createWork: (req, res) => {
     const work = req.body.work;
+    // write a function, formatWork, to put work into correct saving format
+    // work = formatWork(work)
     MongoClient.connect(url, (err, client) => {
       const works = client.db(dbName).collection("works");
-    //   works.insert_one
+    //   works.insertOne(work)
     });
   }
 };
