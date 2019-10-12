@@ -2,10 +2,11 @@ const mlab = require("../keys").mlab;
 const MongoClient = require("mongodb").MongoClient;
 const url = `mongodb://${mlab.username}:${mlab.password}@ds151076.mlab.com:51076/score-study-app`;
 const dbName = "score-study-app";
+const connectionSettings = {useNewUrlParser: true, useUnifiedTopology: true}
 
 const worksController = {
   getAllWorks: (req, res) => {
-    MongoClient.connect(url, async (err, client) => {
+    MongoClient.connect(url, connectionSettings, async (err, client) => {
       const works = client.db(dbName).collection("works");
       const results = await works.find({}).toArray();
 
@@ -15,8 +16,8 @@ const worksController = {
 
   getWorksByComposers: (req, res) => {
     const composers = req.body.composers;
-
-    MongoClient.connect(url, async (err, client) => {
+    
+    MongoClient.connect(url, connectionSettings, async (err, client) => {
       const works = client.db(dbName).collection("works");
       let results = [];
       let currentComposer;
