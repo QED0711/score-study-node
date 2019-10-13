@@ -10,8 +10,15 @@ const usersController = {
         data.authorization = data.authorization || "standard";
         MongoClient.connect(url, connectionSettings, async (err, client) => {
             const userCollection = client.db(dbName).collection("users")
-            await userCollection.insertOne(data)
-            res.send(data)
+
+            const existingUsers = await userCollection.find({username: data.username}).toArray()
+            
+            if (existingUsers.length){
+                res.send({error: "Username already exists"})
+            } else {
+                await userCollection.insertOne(data)
+                res.send(data)
+            }
         })
     },
 
