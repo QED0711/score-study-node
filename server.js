@@ -6,6 +6,7 @@
 // CONTROLLERS
 const worksController = require('./controllers/works');
 const composersController = require('./controllers/composers');
+const usersController = require('./controllers/users');
 
 // EXPRESS SETUP
 const express = require("express");
@@ -30,8 +31,10 @@ app.post("/composer-works", worksController.getWorksByComposers)
 
 // composers
 app.get("/composers", composersController.getAllComposers)
+app.post("/composers/update", composersController.updateComposers)
 app.post("/composers", composersController.createComposer)
 
 // users
+app.post("/users/create", usersController.createUser)
 
 // comments
