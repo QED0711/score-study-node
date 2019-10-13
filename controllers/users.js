@@ -12,7 +12,7 @@ const usersController = {
             const userCollection = client.db(dbName).collection("users")
 
             const existingUsers = await userCollection.find({username: data.username}).toArray()
-            
+
             if (existingUsers.length){
                 res.send({error: "Username already exists"})
             } else {
@@ -23,7 +23,22 @@ const usersController = {
     },
 
     signInUser: (req, res) => {
+        const data = req.body;
+        MongoClient.connect(url, connectionSettings, async (err, client) => {
+            const userCollection = client.db(dbName).collection("users")
 
+            const existingUser = await userCollection.findOne({username: data.username})
+            console.log(existingUser)
+            if(existingUser.password === data.password){
+                res.send({
+                    username: existingUser.username, 
+                    userID: existingUser._id,
+                    authorization: existingUser.authorization
+                });
+            } else {
+                res.send({error: "incorrect password"});
+            }
+        })
     },
 
     deleteUser: (req, res) => {

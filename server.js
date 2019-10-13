@@ -36,5 +36,6 @@ app.post("/composers", composersController.createComposer)
 
 // users
 app.post("/users/create", usersController.createUser)
+app.post("/users/sign-in", usersController.signInUser)
 
 // comments
