@@ -27,22 +27,22 @@ const usersController = {
         MongoClient.connect(url, connectionSettings, async (err, client) => {
             const userCollection = client.db(dbName).collection("users")
 
-            const existingUser = await userCollection.findOne({username: data.username})
-            console.log(existingUser)
-            if(existingUser.password === data.password){
+            const existingUser = await userCollection.findOne({username: data.username, password: data.password})
+
+            if(existingUser){
                 res.send({
                     username: existingUser.username, 
                     userID: existingUser._id,
                     authorization: existingUser.authorization
                 });
             } else {
-                res.send({error: "incorrect password"});
+                res.send({error: "Username or Password Incorrect"});
             }
         })
     },
 
     deleteUser: (req, res) => {
-
+        
     }
 }
 
