@@ -7,11 +7,20 @@ const connectionSettings = {useNewUrlParser: true, useUnifiedTopology: true}
 const composersController = {
 
     updateComposers: (req, res) => {
+        /* 
+        Finds all unique composers in the 'works' collection and formats and saves them to the composer collection
+        */
         MongoClient.connect(url, connectionSettings, async (err, client) => {
             const works = client.db(dbName).collection('works');
             const allWorks = await works.find({}).toArray();
             let composers = allWorks.map(work => work.composer)
-            composers = Array.from(new Set(composers)).map(c => {return {name: c}})
+            composers = Array.from(new Set(composers)).map(c => {
+                return {
+                    composer: c,
+                    displayName: c.split(",")[0],
+                    period: null
+                }
+            })
             
             MongoClient.connect(url, connectionSettings, async () => {
                 const composerCollection = client.db(dbName).collection("composers")
