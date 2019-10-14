@@ -1,9 +1,9 @@
 composer,displayName,period
 "Vaughan Williams, Ralph",Vaughan Williams,20th
 "Smetana, Bedřich",Smetana,romantic
-"Bach, Johann Sebastian",Bach,baroque
+"Bach, Johann Sebastian","JS Bach",baroque
 "Praetorius, Michael",Praetorius,early
-"Bach, Carl Philipp Emanuel",Bach,classical
+"Bach, Carl Philipp Emanuel","CPE Bach",classical
 "Offenbach, Jacques",Offenbach,romantic
 "Paganini, Niccolò",Paganini,romantic
 "Weelkes, Thomas",Weelkes,early
@@ -32,7 +32,7 @@ composer,displayName,period
 "Gabrieli, Giovanni",Gabrieli,baroque
 "Saint-Saëns, Camille",Saint-Saëns,romantic
 "Rossini, Gioacchino",Rossini,romantic
-"Scarlatti, Alessandro",Scarlatti,baroque
+"Scarlatti, Alessandro","A. Scarlatti",baroque
 "Bellini, Vincenzo",Bellini,romantic
 "Berlioz, Hector",Berlioz,romantic
 "Binchois, Gilles",Binchois,early
@@ -46,7 +46,7 @@ composer,displayName,period
 "Debussy, Claude",Debussy,20th
 "Vitry, Philippe de",Vitry,early
 "Donizetti, Gaetano",Donizetti,romantic
-"Scarlatti, Domenico",Scarlatti,baroque
+"Scarlatti, Domenico","D. Scarlatti",baroque
 "Dufay, Guillaume",Dufay,early
 "Dunstaple, John",Dunstaple,early
 "Elgar, Edward",Elgar,romantic

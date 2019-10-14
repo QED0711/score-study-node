@@ -32,7 +32,7 @@ const composersController = {
 
     getAllComposers: (req, res) => {
         MongoClient.connect(url, connectionSettings, async (err, client) => {
-            const composers = client.db(dbName).collection('works');
+            const composers = client.db(dbName).collection('composers');
             const results = await composers.find({}).toArray();
             res.send(results);
         })
