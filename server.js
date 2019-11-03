@@ -37,6 +37,7 @@ app.post("/composers", composersController.createComposer)
 // users
 app.post("/users/create", usersController.createUser)
 app.post("/users/sign-in", usersController.signInUser)
+app.post("/users/change-email", usersController.changeEmail)
 app.post("/users/change-password", usersController.changePassword)
 
 // comments
