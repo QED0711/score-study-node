@@ -24,8 +24,15 @@ const usersController = {
       if (existingUsers.length) {
         res.send({ error: "Username already exists" });
       } else {
-        await userCollection.insertOne(data);
-        res.send(data);
+        let newUser = await userCollection.insertOne(data);
+        newUser = newUser.ops[0]
+        console.log(newUser)
+        res.send({
+            username: newUser.username,
+            email: newUser.email,
+            authorization: newUser.authorization,
+            userID: newUser._id
+        });
       }
     });
   },
