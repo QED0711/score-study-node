@@ -108,7 +108,7 @@ const usersController = {
         );
         res.send(existingUser._id);
       } else {
-        res.send({ error: "no user found with those credentials" });
+        res.send({ error: "incorrect credentials" });
       }
     });
   },
