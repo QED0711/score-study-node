@@ -43,3 +43,5 @@ app.post("/users/change-password", usersController.changePassword)
 
 // comments
 app.post("/comments/create", commentsController.createComment)
+app.post("/comments/user-comments", commentsController.getUserComments)
+app.post("/comments/work-comments", commentsController.getWorkComments)
