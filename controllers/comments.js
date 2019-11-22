@@ -50,15 +50,23 @@ const commentsController = {
         const { body } = req;
 
         MongoClient.connect(url, connectionSettings, async (err, client) => {
-            const comments = client.db(dbName).collection("comments");
+            const commentCollection = client.db(dbName).collection("comments");
 
-            const comment = await comments.findOne({ _id: body.commentID });
+            const comment = await commentCollection.findOne({ 
+                _id: new ObjectID(body.commentID), 
+                userID: body.userID 
+            });
 
             if (comment) {
-                comment.content = body.comment
 
-                comments.updateOne({ _id: body.commentID }, { $set: { content: body.content } })
-                res.send("success")
+                await commentCollection.updateOne(
+                    { _id: new ObjectID(body.commentID) }, 
+                    { $set: 
+                        { content: body.content } 
+                    }
+                )
+
+                res.send(comment._id)
             }
 
         })
