@@ -10,17 +10,13 @@ const commentsController = {
     // CREATE
     createComment: (req, res) => {
 
-        const {body} = req;
+        const data = req.body;
 
         MongoClient.connect(url, connectionSettings, async (err, client) => {
-            const comments = client.db(dbName).collection("comments")
-            const inserted = await comments.insertOne({
-                userID: new ObjectID(body.userID),
-                workID: new ObjectID(body.workID),
-                content: body.content
-            })
-
-            res.send(inserted);
+            const commentCollection = client.db(dbName).collection("comments")
+            // console.log(comments)
+            const inserted = await commentCollection.insertOne(data)
+            res.send(inserted.ops[0]._id);
         })
     },
 
@@ -67,4 +63,4 @@ const commentsController = {
 
 }
 
-export default commentsController;
+module.exports = commentsController;

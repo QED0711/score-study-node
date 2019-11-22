@@ -7,6 +7,7 @@
 const worksController = require('./controllers/works');
 const composersController = require('./controllers/composers');
 const usersController = require('./controllers/users');
+const commentsController = require('./controllers/comments');
 
 // EXPRESS SETUP
 const express = require("express");
@@ -41,3 +42,4 @@ app.post("/users/change-email", usersController.changeEmail)
 app.post("/users/change-password", usersController.changePassword)
 
 // comments
+app.post("/comments/create", commentsController.createComment)
