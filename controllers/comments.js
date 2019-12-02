@@ -45,6 +45,19 @@ const commentsController = {
         })
     },
 
+    getUserCommentsOnWork: (req, res) => {
+        const { body } = req;
+
+        MongoClient.connect(url, connectionSettings, async (err, client) => {
+            const commentCollection = client.db(dbName).collection("comments");
+
+            const userComments = await commentCollection.find({ 
+                userID: body.userID, 
+                workID: body.workID }).toArray()
+            res.send(userComments)
+        })
+    },
+
     // UPDATE
     editComment: (req, res) => {
         const { body } = req;
