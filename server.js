@@ -28,6 +28,7 @@ app.listen(port, () => {
 // works
 app.get("/works", worksController.getAllWorks)
 app.post("/composer-works", worksController.getWorksByComposers)
+app.post("/work", worksController.getWorkByID)
 // app.post("/works", worksController.createWork)
 
 // composers
