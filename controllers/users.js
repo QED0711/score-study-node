@@ -28,7 +28,7 @@ const usersController = {
         .toArray();
 
       if (existingUsers.length) {
-        res.send({ error: "Username already exists" });
+        res.send({ error: "Username already exists. Please select another." });
       } else {
         let newUser = await userCollection.insertOne(data);
         newUser = newUser.ops[0];

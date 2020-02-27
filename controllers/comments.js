@@ -28,7 +28,7 @@ const commentsController = {
             const commentCollection = client.db(dbName).collection("comments");
 
             const workComments = await commentCollection.find({ workID: body.workID }).toArray()
-            res.send(workComments)
+            res.send(workComments || [])
         })
 
     },
@@ -51,9 +51,10 @@ const commentsController = {
         MongoClient.connect(url, connectionSettings, async (err, client) => {
             const commentCollection = client.db(dbName).collection("comments");
 
-            const userComments = await commentCollection.find({ 
-                userID: body.userID, 
-                workID: body.workID }).toArray()
+            const userComments = await commentCollection.find({
+                userID: body.userID,
+                workID: body.workID
+            }).toArray()
             res.send(userComments)
         })
     },
@@ -65,17 +66,18 @@ const commentsController = {
         MongoClient.connect(url, connectionSettings, async (err, client) => {
             const commentCollection = client.db(dbName).collection("comments");
 
-            const comment = await commentCollection.findOne({ 
-                _id: new ObjectID(body.commentID), 
-                userID: body.userID 
+            const comment = await commentCollection.findOne({
+                _id: new ObjectID(body.commentID),
+                userID: body.userID
             });
 
             if (comment) {
 
                 await commentCollection.updateOne(
-                    { _id: new ObjectID(body.commentID) }, 
-                    { $set: 
-                        { content: body.content } 
+                    { _id: new ObjectID(body.commentID) },
+                    {
+                        $set:
+                            { content: body.content }
                     }
                 )
 
@@ -87,7 +89,13 @@ const commentsController = {
 
     // DELETE
     deleteComment: (req, res) => {
+        const { body } = req;
 
+        MongoClient.connect(url, connectionSettings, async (err, client) => {
+            const commentCollection = client.db(dbName).collection("comments");
+            const deleted = await commentCollection.deleteOne({_id: new ObjectID(body.commentID)})
+            deleted && res.send({status: deleted.n, id: body.commentID})
+        })
     }
 
 }
