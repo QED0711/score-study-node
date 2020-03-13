@@ -32,7 +32,6 @@ const usersController = {
       } else {
         let newUser = await userCollection.insertOne(data);
         newUser = newUser.ops[0];
-        console.log(newUser);
         res.send({
           username: newUser.username,
           email: newUser.email,
